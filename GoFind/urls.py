@@ -16,7 +16,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Comptes.views import *
+from GoFind import settings
+from django.conf.urls.static import static
+from GofindApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    #path('',index,name='index'),
+    #path('profile/<str:id>',profile,name='profile'),
+    #path('logout/',deconnexion,name='logout'),
+    #path('Signalements/<str:id>',Signalements,name='Signalements'),
+    #path('inscription/',inscription,name='inscription'),
+    #path('connexion/',connexion,name='connexion'),
+    #path('Recherche/<str:sujet>',Recherche,name='Recherche'),
+    #path('notifications/<str:id>',notifications,name='notifications'),
+    #path('Apropos/',Apropos,name='Apropos'),
+    #path('SupprimerSignal/<str:id>',SupprimerSignal,name='SupprimerSignal'),
+    #path('SignalerObjet/',SignalerObjet,name='SignalerObjet'),
+    #path('SignalerApart/',SignalerApart,name='SignalerApart'),
+    #path('SignalerTrajet/',SignalerTrajet,name='SignalerTrajet'),
+    #path('DetailObjet/<str:id>',DetailObjet,name='DetailObjet'),
+    #path('DetailTrajet/<str:id>',DetailTrajet,name='DetailTrajet'),
+    #path('DetailColloc/<str:id>',DetailColloc,name='DetailColloc'),
+
+
+   
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

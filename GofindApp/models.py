@@ -3,16 +3,12 @@ from django.db import models
 from Comptes.models import Utilisateur
 
 
-
-
-
-
-
 # Create your models here.
 class Signalement(models.Model):
     date=models.DateField(auto_now=True,editable=False)
     Auteur=models.ForeignKey(Utilisateur,on_delete=models.CASCADE)
-
+    def __str__(self):
+        return f"SIGNALEMENT DE  : {self.Auteur.nom} LE {self.date}"
 
 class SignalementColloc(Signalement):
     titre=models.CharField(max_length=128)
@@ -24,7 +20,7 @@ class SignalementColloc(Signalement):
     prix=models.IntegerField() 
     nombre = models.IntegerField()  
     def __str__(self):
-        return f"COLOCATION | SIGNALEMENT DE  : {self.Auteur} LE {self.date}"
+        return f"COLOCATION | SIGNALEMENT DE  : {self.Auteur.nom} LE {self.date}"
 
 class SignalementTrajet(Signalement):
     Depart=models.CharField(max_length=128)
@@ -39,7 +35,7 @@ class SignalementTrajet(Signalement):
     dateDepart=models.DateTimeField()
     modeleVoiture=models.CharField(max_length=200)
     def __str__(self):
-        return f"TRAJET | SIGNALEMENT DE  : {self.Auteur} LE {self.date} TRAJET {self.Depart} - {self.Arrive}"    
+        return f"TRAJET | SIGNALEMENT DE  : {self.Auteur.nom} LE {self.date} TRAJET {self.Depart} - {self.Arrive}"    
 
 class SignalementObjet(Signalement):
     Code=models.CharField(max_length=328)
@@ -51,4 +47,4 @@ class SignalementObjet(Signalement):
     lieu=models.CharField(max_length=128,default="YAOUNDE") 
     cathegorie=models.CharField(max_length=200)
     def __str__(self):
-        return f"OBJETS VOLE | SIGNALEMENT DE  : {self.Auteur} LE {self.date} OBJET {self.nom}" 
+        return f"OBJETS VOLE | SIGNALEMENT DE  : {self.Auteur.nom} LE {self.date} OBJET {self.nom}" 

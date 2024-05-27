@@ -23,9 +23,9 @@ class Utilisateur(AbstractUser):
     username = models.CharField(max_length=13, unique=True) # il s'agit ici en realite de son numero de telephone
     email = models.EmailField()
     password = models.CharField(max_length=500)
-    nom=models.CharField(max_length=200)
+    nom=models.CharField(max_length=200,null=True,blank=True)
     ville=models.CharField(max_length=100,null=True,blank=True)
-    whatsapp = models.CharField(max_length=13)
+    whatsapp = models.CharField(max_length=13,null=True,blank=True)
     #champs non editables
     date=models.DateField(auto_now=True,editable=False)
     def __str__(self):
