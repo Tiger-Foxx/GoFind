@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Vos Signalements</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Signalements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Wishlist  -->
+    <div class="wishlist-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Images</th>
+                                    <th>Titre</th>
+                                    <th>Type </th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        </a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">
+                                            Pull Versacci
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>Objet</p>
+                                    </td>
+                                    <td class="quantity-box">Le 22-02-2024</td>
+                                    <td class="add-pr">
+                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        </a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">
+                                            Pull Versacci
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>Objet</p>
+                                    </td>
+                                    <td class="quantity-box">Le 22-02-2024</td>
+                                    <td class="add-pr">
+                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        </a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">
+                                            Pull Versacci
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>Objet</p>
+                                    </td>
+                                    <td class="quantity-box">Le 22-02-2024</td>
+                                    <td class="add-pr">
+                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Wishlist -->
+
+    {% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Objets pour : Xxxxx xxxxx xxx</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Objets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Recherchez ici..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Categories</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree"
+                                id="list-group-men" data-children=".sub-men">
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men1"
+                                        data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Clothing
+                                        <small class="text-muted">(100)</small>
+                                    </a>
+
+                                </div>
+                                <div class="list-group-collapse sub-men">
+                                    <a class="list-group-item list-group-item-action" href="#sub-men2"
+                                        data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Footwear
+                                        <small class="text-muted">(50)</small>
+                                    </a>
+                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+
+                                    </div>
+                                </div>
+                                <a href="#" class="list-group-item list-group-item-action"> Men <small
+                                        class="text-muted">(150) </small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Accessories <small
+                                        class="text-muted">(11)</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">Bags <small
+                                        class="text-muted">(22)</small></a>
+                            </div>
+                        </div>
+                      
+                  
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Trier Par </span>
+                                    <select id="basic" class="selectpicker show-tick form-control"
+                                        data-placeholder="$ USD">
+                                        <option data-display="Select">Nothing</option>
+                                        <option value="1">Popularity</option>
+                                        <option value="2">High Price → High Price</option>
+                                        <option value="3">Low Price → High Price</option>
+                                        <option value="4">Best Selling</option>
+                                    </select>
+                                </div>
+                                <p>Resultats (50)</p>
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#produits-view" title="produits" data-toggle="tab"> <i
+                                                class="fa fa-th"></i> </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="produits-view">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Perdu</p>
+                                                    </div>
+                                                    <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                                                    title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                           
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Echarpe Gucci perdue | AWAE</h4>
+                                                    <h5> Le 09-06-2024</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+    {% endblock %}

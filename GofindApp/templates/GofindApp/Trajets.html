@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Trajets pour : Xxxxx xxxxx xxx</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Trajets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Recherchez ici..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        
+                        <div class="filter-price-left">
+                            <div class="title-left">
+                                <h3>Prix</h3>
+                            </div>
+                            <div class="price-box-slider">
+                                <div id="slider-range"></div>
+                                <p>
+                                    <input type="text" id="amount" readonly
+                                        style="border:0; color:#fbb714; font-weight:bold;">
+                                    <button class="btn hvr-hover" type="submit">Filtrer</button>
+                                </p>
+                            </div>
+                        </div>
+                        
+                  
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Trier Par </span>
+                                    <select id="basic" class="selectpicker show-tick form-control"
+                                        data-placeholder="$ USD">
+                                        <option data-display="Select">Nothing</option>
+                                        <option value="1">Popularity</option>
+                                        <option value="2">High Price → High Price</option>
+                                        <option value="3">Low Price → High Price</option>
+                                        <option value="4">Best Selling</option>
+                                    </select>
+                                </div>
+                                <p>Resultats (50)</p>
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                   
+                                    <li>
+                                        <a class="nav-link active" href="#trajet-view" data-toggle="tab" title="trajets"> <i
+                                                class="fa fa-th"></i> </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row product-categorie-box">
+                            <div class="tab-content">
+                              
+
+                                <div role="tabpanel" class="tab-pane fade show active" id="trajet-view">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">3 places</p>
+                                                    </div>
+                                                   
+                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="#">Details</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4>Douala-Younde</h4>
+                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+    {% endblock %}

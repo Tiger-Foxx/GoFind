@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-left">
+                <img src="{% static 'images/banner-01.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20 titre"><strong>Bienvenue sur <br> GoFind , </strong>
+                            
+                            {% if user.is_authenticated %}
+                                {{user.nom}}
+                            {% endif %}
+                                
+                            </h1>
+                            <p class="m-b-40"><strong class="sous-text">Retrouver ou signalez vos objets <br> plus question d'acheter des objets victimes de vols.</strong></p>
+                            <p><a class="btn hvr-hover" href="#modal-opened">Signaler Objet</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'images/banner-02.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20 titre"><strong>Bienvenue sur <br> GoFind , </strong>
+                            
+                                {% if user.is_authenticated %}
+                                    {{user.nom}}
+                                {% endif %}
+                                    
+                                </h1>
+                            <p class="m-b-40"><strong class="sous-text"> Faites du Covoiturage <br> Mettez a profit vos differents deplacements.</strong></p>
+                            <p><a class="btn hvr-hover" href="#">Signaler Trajet</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-right">
+                <img src="{% static 'images/banner-03.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20 titre"><strong>Bienvenue sur <br> GoFind , </strong>
+                            
+                                {% if user.is_authenticated %}
+                                    {{user.nom}}
+                                {% endif %}
+                                    
+                                </h1>
+                            <p class="m-b-40"><strong class="sous-text"> Faites de la Colocation <br> Une piece en trop chez vous ? parfait , mettez-la en location !.</strong></p>
+                            <p><a class="btn hvr-hover" href="#">Signaler Appartement</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- End Slider -->
+
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1><span style="color: red;">Gofindez</span>-vous Peut-etre Ceci ?</h1>
+                        <p>Quelques Categories d'objets que vous Cherchez Peut-etre...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img-02.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Habits</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img-01.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Electro-Menagers</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Outils-IT</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img-02.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Sacs</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img-01.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Chaussures</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'images/blog-img.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="#">Bijoux</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Categories -->
+
+    <!-- Start Products  -->
+    <div class="products-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1><span style="color: red;">Gofindez</span>-vous Peut-etre Un trajet ?</h1>
+
+                        <p>Quelques Trajets de Corvoiturage que nous avons sur GoFind en ce Moment...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center" >
+                        <div class="button-group filter-button-group" style="font-weight: 900;">
+                            <button class="active" data-filter="*">Tous</button>
+                            <button data-filter=".top-featured">Departs Proches</button>
+                            <button data-filter=".best-seller">Arrivee Proche</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row special-list">
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">3 places</p>
+                            </div>
+                           
+                            <img src="images/map.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Details</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Douala-Younde</h4>
+                            <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                            <h5> <span style="color:red">3500</span>  XAF</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">3 places</p>
+                            </div>
+                            <img src="images/map.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Details</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Douala-Younde</h4>
+                            <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                            <h5> <span style="color:red">3500</span>  XAF</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">3 places</p>
+                            </div>
+                            <img src="images/map.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Details</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Douala-Younde</h4>
+                            <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                            <h5> <span style="color:red">3500</span>  XAF</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">3 places</p>
+                            </div>
+                            <img src="images/map.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Details</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Douala-Younde</h4>
+                            <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
+                            <h5> <span style="color:red">3500</span>  XAF</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Products  -->
+
+    <!-- Start Blog  -->
+    <div class="latest-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1><span style="color: red;">Gofindez</span>-vous Peut-etre Une Colocation ?</h1>
+                        <p>Quelques Appartement en Colocation Proches de Vous</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="blog-box">
+                        <div class="blog-img">
+                            <img class="img-fluid" src="images/blog-img.jpg" alt="" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="title-blog">
+                                <h3>Awae - Concorde 2 chambre salon</h3>
+                                <p>Exellent Appartement A awae , 2 chambres et un salon , la plus grande chambre de 12x12 m est libre et les toilettes sont modernes</p>
+                            </div>
+                            <ul class="option-blog">
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Commentaires"><i class="far fa-comments"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="blog-box">
+                        <div class="blog-img">
+                            <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="title-blog">
+                                <h3>Awae - Concorde 2 chambre salon</h3>
+                                <p>Exellent Appartement A awae , 2 chambres et un salon , la plus grande chambre de 12x12 m est libre et les toilettes sont modernes</p>
+                            </div>
+                            <ul class="option-blog">
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Commentaires"><i class="far fa-comments"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    <div class="blog-box">
+                        <div class="blog-img">
+                            <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="title-blog">
+                                <h3>Awae - Concorde 2 chambre salon</h3>
+                                <p>Exellent Appartement A awae , 2 chambres et un salon , la plus grande chambre de 12x12 m est libre et les toilettes sont modernes</p>
+                            </div>
+                            <ul class="option-blog">
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Commentaires"><i class="far fa-comments"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog  -->
+
+    {% endblock %}

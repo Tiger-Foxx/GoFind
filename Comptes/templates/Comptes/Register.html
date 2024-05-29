@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gofind - Votre Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .srouce {
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <div class="form-container">
+
+         
+
+            <div class="form-body">
+                <h2 class="title">BIENVENUE SUR <span style="font-weight: 900;color: #ffb37b">GOFIND</span></h2>
+                <div class="social-login">
+                    <ul>
+                        <li class="google"><a href="#">Google</a></li>
+                        <li class="fb"><a href="#">Facebook</a></li>
+                    </ul>
+                </div><!-- SOCIAL LOGIN -->
+
+                <div class="_or">Ou</div>
+
+                <form action="#" class="the-form" method="post">
+                    {% csrf_token %}
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Votre Addresse mail" required>
+
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
+                    <label for="ville">Ville</label>
+                    <input type="text" name="ville" id="ville" placeholder="Votre Ville" required>
+
+                    <label for="telephone">Tel : Whatsapp</label>
+                    <input type="tel" name="telephone" id="telephone" placeholder="Votre Telephone whatsapp" required>
+
+                    <label for="password">Mot de Passe</label>
+                    <input type="password" name="password" id="password" placeholder="Mot de Passe" required>
+                    <label for="password">Confirmez Mot de Passe</label>
+                    <input type="password" name="Confpassword" id="Confpassword" placeholder="Confirmez Mot de Passe"
+                        required>
+                    <div class="row">
+                        <label for="remember-me" style="margin-right: 5px;">Se souvenir de moi</label>
+                        <input type="checkbox" name="remember-me" id="remember-me">
+                    </div>
+
+                    <h4 class="title" id="errorMessage"></h4>
+
+                    <a href="#" onclick="send_data()"  class="btn hvr-hover" style="color: #ffffff;margin-top:5px;height:60px ; font-weight:900;justify-content:center;align-items:center;display:flex;background-color:rgb(248, 105, 105)"> GOOOOOOOO</a>                   
+                     
+                    
+                    <input type="submit" hidden="true" id="btnSub" value="Inscription">
+                </form>
+
+            </div><!-- FORM BODY-->
+
+            <div class="form-footer">
+                <div>
+
+                        <span style="font-weight: 900;color:#ffff">Vous avez deja un compte ?</span> <a href="{% url 'connexion' %}" style="font-weight: 900;">Connexion</a>
+
+                </div>
+            </div><!-- FORM FOOTER -->
+
+        </div><!-- FORM CONTAINER -->
+    </div>
+
+    <script>
+        function test(){
+            btn=document.getElementById('btnSub');
+            btn.onclick=function(){
+                alert('fox')
+            };
+        }
+    </script>
+
+    <script>
+        function sub() {
+            document.getElementById("btnSub").click();
+        }
+        function getCookie(name) {
+            // Cette fonction renvoie la valeur du cookie nommé name, ou null si le cookie n'existe pas
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                var cookies = document.cookie.split(";");
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Vérifier si le cookie commence par le nom recherché
+                    if (cookie.substring(0, name.length + 1) === name + "=") {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function send_data() {
+            boutonSub=document.getElementById("btnSub");
+
+            // Récupérer les données du formulaire
+            var name = document.getElementById("nom").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var telephone = document.getElementById("telephone").value;
+            var ville = document.getElementById("ville").value;
+            var confpassword = document.getElementById("Confpassword").value;
+            var checkboxremember=document.getElementById("remember-me").checked
+
+            
+            if(name=="" || password=="" || email=="" || ville=="" || confpassword=="" || telephone==""){
+                sub();
+                return 0;
+            }
+                
+
+
+            // Créer un objet FormData pour stocker les données du formulaire
+            var form_data = new FormData();
+            form_data.append("nom", name);
+            form_data.append("password", password);
+            form_data.append("email",email);
+            form_data.append("telephone", telephone);
+            form_data.append("ville", ville);
+            form_data.append("Confpassword", confpassword);
+            form_data.append("remember-me", checkboxremember);
+
+            // Créer un objet XMLHttpRequest pour envoyer la requête Ajax
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/inscription/", true); // Remplacer "/singup/" par l'URL de votre vue Django
+            xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken")); // Ajouter le token CSRF pour la sécurité
+            xhr.onload = function () {
+                // Traiter la réponse du serveur
+                if (xhr.status == 200) {
+                    // La requête a réussi
+                    var response = JSON.parse(xhr.responseText); // Convertir la réponse en objet JSON
+                    if (response.success) {
+                        // L'inscription ou la connexion a réussi
+                        window.location.href = response.redirect_url; // Rediriger l'utilisateur vers une autre page
+                    } else {
+                      //alert(response.message);
+                        // L'inscription ou la connexion a échoué
+
+                        document.getElementById("errorMessage").innerHTML = response.message; // Afficher le message d'erreur
+                    }
+                } else {
+                    // La requête a échoué
+                    document.getElementById("errorMessage").innerHTML = "OUPS !! Une Erreur s'est produite "; // Afficher un message générique
+                }
+            };
+            xhr.send(form_data); // Envoyer les données du formulaire
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -29,5 +29,5 @@ class Utilisateur(AbstractUser):
     #champs non editables
     date=models.DateField(auto_now=True,editable=False)
     def __str__(self):
-        return f"Utilisateur | nom: {self.nom} | telphone: {self.username}"
+        return f"Utilisateur | nom: {self.nom} | telphone: {self.whatsapp}"
 

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Signaler Votre Maison</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Signaler COLOCATION</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Ajoutez Votre Maison</h3>
+                        </div>
+                       
+                        <form class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="titre">Titre de lannonce *</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="titre" name="titre" placeholder="Ex : A colouer Apart moderne " required> 
+                                    <div class="invalid-feedback" style="width: 100%;"> Titre requis. </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="lieu">Lieu *</label>
+                                    <input type="text" class="form-control" id="lieu" name="lieu" placeholder="Ex : Yaounde - AWAE" value="" required>
+                                    <div class="invalid-feedback"> Le lieu doit respecter le format(Xxx - XXX).</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="prix">Loyer(mensuel) *</label>
+                                    <input type="number" class="form-control" id="prix" name="prix" placeholder="Ex : 50000" value="" required>
+                                    <div class="invalid-feedback"> Le prix est indispensable (0 si gratuit).</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="personnes">Nombre de personnes *</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="personnes" name="personnes" placeholder="Ex : 3" required>
+                                    <div class="invalid-feedback" style="width: 100%;"> Le Nombre de personnes est requis. </div>
+                                </div>
+                            </div>
+                            
+                            <hr class="mb-1">
+                            
+                            <div class="col">
+                                <div class="row-md-6 mb-3">
+                                    <h3>PHOTOS DE LA MAISON</h3>
+                                </div>
+                                <div class="row-md-6 mb-3">
+                                    <label for="country">Photo 1 *</label>
+                                    <input type="file" class="form-control" id="photo1" name="photo1" required>
+                                    <div class="invalid-feedback"> cette photo est obligatoire !. </div>
+                                </div>
+                                <div class="row-md-6 mb-3">
+                                    <label for="country">Photo 2 </label>
+                                    <input type="file" class="form-control" id="photo2" name="photo2">
+                               
+                                </div>
+                                <div class="row-md-6 mb-3">
+                                    <label for="country">Photo 3 </label>
+                                    <input type="file" class="form-control" id="photo3" name="photo3">
+                               
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="row-md-6 mb-3">
+                                    <label for="description">Description de la maison *</label>
+                                    <textarea type="text" class="form-control" id="description"  name="description" placeholder="" required rows="5" cols="70"></textarea>
+                                    <div class="invalid-feedback"> Commentaire requis </div>
+                                </div>
+                               
+                            </div>
+                           
+                            <hr class="mb-1"> </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                        
+                        <div class="col-md-12 col-lg-8">
+                            <div class="odr-box">
+                                <div class="title-left">
+                                    <h3>Appartement</h3>
+                                </div>
+                                <div class="rounded p-2 bg-light">
+                                    <img src="images/house.jpg" height="400" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex shopping-box"> <a href="#" class="ml-auto btn hvr-hover">Valider le Signalement</a> </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Cart -->
+    {% endblock %}

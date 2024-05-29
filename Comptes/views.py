@@ -50,13 +50,17 @@ def inscription(request):
                 else:
                   print("not remember")
                   request.session.set_expiry(0)
+                #apres inscription on le redirige
+                if user.is_authenticated:
+                    return JsonResponse({"success": True, "redirect_url": "/"}) # Renvoyer une réponse JSON avec un indicateur de succès et l'URL de redirection
+                else : 
+                    print(f"L'ERREUR EST INCONNUE ")
+                    return JsonResponse({"success": False, "message": "ERREUR ou l'UTILISATEUR EXISTE DEJA"}) # Renvoyer une réponse JSON avec un indicateur d'échec et un message d'erreur
             except Exception as e:
                 print(f"L'ERREUR EST : {e} ")
-                return JsonResponse({"success": False, "message": " l'utilisateur existe deja."}) # Renvoyer une réponse JSON avec un indicateur d'échec et un message d'erreur
+                return JsonResponse({"success": False, "message": e}) # Renvoyer une réponse JSON avec un indicateur d'échec et un message d'erreur
 
-            
-        #apres inscription on le redirige
-            return JsonResponse({"success": True, "redirect_url": "/"}) # Renvoyer une réponse JSON avec un indicateur de succès et l'URL de redirection
+        
         else:
             return JsonResponse({"success": False, "message": "Les mots de passe ne correspondent pas."}) # Renvoyer une réponse JSON avec un indicateur d'échec et un message d'erreur
     else :
@@ -75,6 +79,7 @@ def connexion(request):
         password =request.POST.get("password")
         Remember =request.POST.get("remember-me")
         print("le mdp est : "+password)
+        print("l'email est : "+email)
         
         user=authenticate(username=email, password=password) 
         if user:
@@ -123,3 +128,13 @@ def profile(request,nom):
         return redirect('index')
     #notificationss=Notification.objects.all().order_by('-date')[:4]
     return render(request,'SmartInvestApp/profile.html')
+
+
+
+
+def deconnexion(request):
+    logout(request)
+    return render(request,'Comptes/Login.html')
+
+############################## AUTHENTIFICATION ##############################
+##############################################################################

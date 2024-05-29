@@ -23,12 +23,12 @@ from GofindApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('',index,name='index'),
+    path('',index,name='index'),
     #path('profile/<str:id>',profile,name='profile'),
-    #path('logout/',deconnexion,name='logout'),
+    path('logout/',deconnexion,name='logout'),
     #path('Signalements/<str:id>',Signalements,name='Signalements'),
-    #path('inscription/',inscription,name='inscription'),
-    #path('connexion/',connexion,name='connexion'),
+    path('inscription/',inscription,name='inscription'),
+    path('connexion/',connexion,name='connexion'),
     #path('Recherche/<str:sujet>',Recherche,name='Recherche'),
     #path('notifications/<str:id>',notifications,name='notifications'),
     #path('Apropos/',Apropos,name='Apropos'),

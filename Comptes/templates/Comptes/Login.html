@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gofind - Votre Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/buttons/_buttons.scss' %}">
+    
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+          <!-- Site CSS -->
+   
+    <style>
+        .srouce{
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="form-container">
+
+
+            <div class="form-body">
+                <h2 class="title">CONTENT DE VOUS REVOIR !</h2>
+                <div class="social-login">
+                    <ul>
+                        <li class="google"><a href="#">Google</a></li>
+                        <li class="fb"><a href="#">Facebook</a></li>
+                    </ul>
+                </div><!-- SOCIAL LOGIN -->
+
+                <div class="_or">Ou</div>
+
+                <form action="" class="the-form">
+                    {% csrf_token %}
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Votre Addresse mail"  required>
+
+                    <label for="password">Mot de Passe</label>
+                    <input type="password" name="password" id="password" placeholder="Mot de Passe" required>
+                    <h4 class="title" id="errorMessage" ></h4>
+                    <div class="row">
+                        <label for="remember-me" style="margin-right: 5px;">Se souvenir de moi</label>
+                        <input type="checkbox" name="remember-me" id="remember-me">
+                    </div>
+                    <a href="#" onclick="send_data()"  class="btn hvr-hover" style="color: #ffffff;margin-top:5px;height:60px ; font-weight:900;justify-content:center;align-items:center;display:flex;background-color:rgb(248, 105, 105)"> GOOOOOOOO</a>                   
+                </form>
+                <script>
+                    function sub2() {
+                        document.getElementById("btnSub2").click();
+                    }
+                    function getCookie(name) {
+                      // Cette fonction renvoie la valeur du cookie nommé name, ou null si le cookie n'existe pas
+                      var cookieValue = null;
+                      if (document.cookie && document.cookie !== "") {
+                          var cookies = document.cookie.split(";");
+                          for (var i = 0; i < cookies.length; i++) {
+                              var cookie = cookies[i].trim();
+                              // Vérifier si le cookie commence par le nom recherché
+                              if (cookie.substring(0, name.length + 1) === name + "=") {
+                                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                  break;
+                              }
+                          }
+                      }
+                      return cookieValue;
+                  }
+                    function send_data() {
+      
+                        // Récupérer les données du formulaire
+                        var email = document.getElementById("email").value;
+                        var password = document.getElementById("password").value;
+      
+      
+                        // Créer un objet FormData pour stocker les données du formulaire
+                        var form_data = new FormData();
+                        form_data.append("email", email);
+                        form_data.append("password", password);
+                        form_data.append("remember-me", document.getElementById("checkbox-remember"));
+      
+      
+                        // Créer un objet XMLHttpRequest pour envoyer la requête Ajax
+                        var xhr = new XMLHttpRequest();
+      
+                        xhr.open("POST", "/connexion/", true); // Remplacer "/singup/" par l'URL de votre vue Django
+                        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken")); // Ajouter le token CSRF pour la sécurité
+                        xhr.onload = function () {
+                            // Traiter la réponse du serveur
+                            if (xhr.status == 200) {
+                                // La requête a réussi
+                                var response = JSON.parse(xhr.responseText); // Convertir la réponse en objet JSON
+                                if (response.success) {
+                                    // L'inscription ou la connexion a réussi
+                                    window.location.href = response.redirect_url; // Rediriger l'utilisateur vers une autre page
+                                } else {
+                                    // L'inscription ou la connexion a échoué
+                                    document.getElementById("errorMessage").innerHTML = response.message; // Afficher le message d'erreur
+                                }
+                            } else {
+                                // La requête a échoué
+                                document.getElementById("errorMessage").innerHTML = "OUPS !! Une Erreur s'est produite "; // Afficher un message générique
+                            }
+                        };
+                        xhr.send(form_data); // Envoyer les données du formulaire
+                    }
+      
+                </script>
+            </div><!-- FORM BODY-->
+
+            <div class="form-footer">
+                <div>
+                    <span style="font-weight: 900;color:#ffff">Vous n'avez pas de compte ?</span> <a href="{% url 'inscription' %}" style="font-weight: 900;">Inscription</a>
+                </div>
+            </div><!-- FORM FOOTER -->
+
+        </div><!-- FORM CONTAINER -->
+    </div>
+
+</body>
+</html>
