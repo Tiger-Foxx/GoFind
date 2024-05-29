@@ -30,7 +30,8 @@
                             <h3>Ajoutez Votre Maison</h3>
                         </div>
                        
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" enctype="multipart/form-data"  novalidate>
+                            {% csrf_token %}
                             <div class="mb-3">
                                 <label for="titre">Titre de lannonce *</label>
                                 <div class="input-group">
