@@ -19,6 +19,7 @@
     </div>
     <!-- End All Title Box -->
 
+
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
         <div class="container">
@@ -26,26 +27,10 @@
                 <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                     <div class="product-categori">
                         <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Recherchez ici..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
-                            </form>
+                            <input id="search-input" class="form-control" placeholder="Recherchez ici..." type="text">
+                            <button id="search-btn"> <i class="fa fa-search"></i> </button>
                         </div>
                         
-                        <div class="filter-price-left">
-                            <div class="title-left">
-                                <h3>Prix</h3>
-                            </div>
-                            <div class="price-box-slider">
-                                <div id="slider-range"></div>
-                                <p>
-                                    <input type="text" id="amount" readonly
-                                        style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filtrer</button>
-                                </p>
-                            </div>
-                        </div>
-                  
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
@@ -54,36 +39,29 @@
                             <div class="col-12 col-sm-8 text-center text-sm-left">
                                 <div class="toolbar-sorter-right">
                                     <span>Trier Par </span>
-                                    <select id="basic" class="selectpicker show-tick form-control"
-                                        data-placeholder="$ USD">
-                                        <option data-display="Select">Nothing</option>
-                                        <option value="1">Popularity</option>
-                                        <option value="2">High Price → High Price</option>
-                                        <option value="3">Low Price → High Price</option>
-                                        <option value="4">Best Selling</option>
+                                    <select id="sort-options" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                        <option data-display="Select">Rien</option>
+                                        <option value="price">Prix</option>
+                                        <option value="number">Nombre de personnes</option>
                                     </select>
                                 </div>
-                                <p>Resultats (50)</p>
+                                <p>Resultats (<span id="result-count">{{ colocations.count }}</span>)</p>
                             </div>
                             <div class="col-12 col-sm-4 text-center text-sm-right">
                                 <ul class="nav nav-tabs ml-auto">
-                               
                                     <li>
-                                        <a class="nav-link active" href="#appart-view" data-toggle="tab" title="appart" > 
-                                            <i
-                                                class="fa fa-list-ul"></i> </a>
+                                        <a class="nav-link active" href="#appart-view" data-toggle="tab" title="appart"> 
+                                            <i class="fa fa-list-ul"></i>
+                                        </a>
                                     </li>
-                                 
-                                    
                                 </ul>
                             </div>
                         </div>
-
                         <div class="row product-categorie-box">
                             <div class="tab-content">
-                                
                                 <div role="tabpanel" class="tab-pane fade show active" id="appart-view">
-                                    <div class="list-view-box">
+                                    {% for colocation in colocations %}
+                                    <div class="list-view-box colocation-item" data-price="{{ colocation.prix }}" data-title="{{ colocation.titre }}" data-lieu="{{ colocation.lieu }}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                 <div class="products-single fix">
@@ -91,130 +69,103 @@
                                                         <div class="type-lb">
                                                             <p class="new">Colocation</p>
                                                         </div>
-                                                        <img src="images/blog-img.jpg" class="img-fluid" alt="Image">
+                                                        <img src="{{ colocation.Photo1.url }}" class="img-fluid" alt="Image">
                                                         <div class="mask-icon">
                                                             <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Voir"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                
+                                                                <li><a href="{% url 'DetailColloc' colocation.id %}" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
                                                             </ul>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                                 <div class="why-text full-width">
-                                                    <h4>COLOCATION DEUX CHAMBRES AWAE</h4>
-                                                    <h5> <span style="color: black;">Loyer initial</span> $400.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Details</a>
+                                                    <h4>{{ colocation.titre }}</h4>
+                                                    <h5> <span style="color: black;">Loyer initial</span> {{ colocation.prix }} FCFA</h5>
+                                                    <p>{{ colocation.details }}</p>
+                                                    <a class="btn hvr-hover" href="{% url 'DetailColloc' colocation.id %}">Details</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="new">Colocation</p>
-                                                        </div>
-                                                        <img src="images/blog-img.jpg" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Voir"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>COLOCATION DEUX CHAMBRES AWAE</h4>
-                                                    <h5> <span style="color: black;">Loyer initial</span> $400.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Details</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-view-box">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <div class="type-lb">
-                                                            <p class="new">Colocation</p>
-                                                        </div>
-                                                        <img src="images/blog-img.jpg" class="img-fluid" alt="Image">
-                                                        <div class="mask-icon">
-                                                            <ul>
-                                                                <li><a href="#" data-toggle="tooltip"
-                                                                        data-placement="right" title="Voir"><i
-                                                                            class="fas fa-eye"></i></a></li>
-                                                                
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text full-width">
-                                                    <h4>COLOCATION DEUX CHAMBRES AWAE</h4>
-                                                    <h5> <span style="color: black;">Loyer initial</span> $400.79</h5>
-                                                    <p>Integer tincidunt aliquet nibh vitae dictum. In turpis sapien,
-                                                        imperdiet quis magna nec, iaculis ultrices ante. Integer vitae
-                                                        suscipit nisi. Morbi dignissim risus sit amet orci porta, eget
-                                                        aliquam purus
-                                                        sollicitudin. Cras eu metus felis. Sed arcu arcu, sagittis in
-                                                        blandit eu, imperdiet sit amet eros. Donec accumsan nisi purus,
-                                                        quis euismod ex volutpat in. Vestibulum eleifend eros ac
-                                                        lobortis aliquet.
-                                                        Suspendisse at ipsum vel lacus vehicula blandit et sollicitudin
-                                                        quam. Praesent vulputate semper libero pulvinar consequat. Etiam
-                                                        ut placerat lectus.</p>
-                                                    <a class="btn hvr-hover" href="#">Details</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Shop Page -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+           
+            // Recherche en temps réel
+            document.getElementById("search-input").addEventListener("input", function () {
+                
+                var searchText = this.value.toLowerCase();
+                var colocationItems = document.querySelectorAll(".colocation-item");
+                
+                colocationItems.forEach(function (item) {
+                    var title = item.getAttribute("data-title").toLowerCase();
+                    var lieu = item.getAttribute("data-lieu").toLowerCase();
+                    if (title.includes(searchText) || lieu.includes(searchText)) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            });
+
+            // Recherche en temps réel
+           /* document.getElementById("search-input").addEventListener("change", function () {
+                
+                var searchText = this.value.toLowerCase();
+                var colocationItems = document.querySelectorAll(".colocation-item");
+                
+                colocationItems.forEach(function (item) {
+                    var title = item.getAttribute("data-title").toLowerCase();
+                    var lieu = item.getAttribute("data-lieu").toLowerCase();
+                    if (title.includes(searchText) || lieu.includes(searchText)) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            });*/
+    
+            // Trier par prix ou nombre
+            document.getElementById("sort-options").addEventListener("change", function () {
+                
+                var sortBy = this.value;
+                //alert(sortBy);
+                var items = Array.from(document.querySelectorAll(".colocation-item"));
+                //alert(items);
+                //alert("ok");
+                items.sort(function (a, b) {
+                    
+                    if (sortBy.includes("price") ) {
+                        alert("prix");
+                        return parseInt(a.getAttribute("data-price")) - parseInt(b.getAttribute("data-price"));
+                    } else if (sortBy.includes("number")) {
+                        alert("nombre");
+                        return parseInt(a.getAttribute("data-number")) - parseInt(b.getAttribute("data-number"));
+                    }
+                    return 0;
+                });
+                var container = document.querySelector(".tab-content");
+                container.innerHTML = '';
+                items.forEach(function (item) {
+                    container.appendChild(item);
+                });
+            });
+        });
+    
+        
+    </script>
+    
+
+
     {% endblock %}

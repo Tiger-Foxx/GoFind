@@ -2,7 +2,8 @@
 
 {% block content %}
 {% load static %}
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVBkXbcRJ3WvdwOoI4r5Tmrh3xTKb278" loading="async" async
+    defer></script>
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -26,52 +27,51 @@
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"> <img class="d-block w-100" src="images/carte.jpg" alt="First slide"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="images/voiture.jpg" alt="Second slide"> </div>
-                            <div class="carousel-item"> <img class="d-block w-100" src="images/voiture.jpg" alt="Third slide"> </div>
+                            {% for photo in photos %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img class="d-block w-100" src="{{ photo }}" alt="Slide">
+                            </div>
+                            {% endfor %}
                         </div>
-                        <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev"> 
-						<i class="fa fa-angle-left" aria-hidden="true"></i>
-						<span class="sr-only">Previous</span> 
-					</a>
-                        <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next"> 
-						<i class="fa fa-angle-right" aria-hidden="true"></i> 
-						<span class="sr-only">Next</span> 
-					</a>
+                        <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-1" data-slide-to="0" class="active">
-                                <img class="d-block w-100 img-fluid" src="images/carte.jpg" style="width:70pxpx ;height:100px" alt="" />
+                            {% for photo in photos %}
+                            <li data-target="#carousel-example-1" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}">
+                                <img class="d-block w-100 img-fluid" src="{{ photo }}" style="width:70px; height:100px" alt="">
                             </li>
-                            <li data-target="#carousel-example-1" data-slide-to="1">
-                                <img class="d-block w-100 img-fluid" src="images/voiture.jpg"  style="width:70pxpx ;height:100px" alt="" />
-                            </li>
-                            <li data-target="#carousel-example-1" data-slide-to="2">
-                                <img class="d-block w-100 img-fluid" src="images/voiture.jpg" style="width:70pxpx ;height:100px" alt="" />
-                            </li>
+                            {% endfor %}
                         </ol>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
-                        <h2>Trajet : Zone X - Zone Y</h2>
-                        <h5> <span style="color: black;">Prix - place : </span> $40.79</h5>
-                        <h2>Voiture Marque : Marque X model Y</h2>
-                        <p class="available-stock"><span> 3 places disponibles / <a href="#">le 22-06-2024 </a></span>
+                        <h2>Trajet : {{ trajet.Depart }} - {{ trajet.Arrive }}</h2>
+                        <h2>Distance : <span id="distance"></span></h2>
+                        <h2>duree : <span id="duration"></span></h2>
+                        <div id="map" style="height: 400px; width: 100%;"></div>
+                        <h5> <span style="color: black;">Prix - place : </span> {{ trajet.prix }} XAF</h5>
+                        <h2>Voiture Marque : {{ trajet.modeleVoiture }}</h2>
+        
+                        <p class="available-stock"><span> {{ trajet.places }} places disponibles / <a href="#">{{ trajet.dateDepart|date:"d-m-Y" }} </a></span>
                             <p>
-                                <h4>Lieu de Depart : Zone X - Quartier x</h4>
-                                <h4>Arrivee a  : Zone Y - Quartier y</h4>
+                                <h4>Lieu de Depart : {{ trajet.Depart }}</h4>
+                                <h4>Arrivee a  : {{ trajet.Arrive }}</h4>
+        
                                 <h4>Commentaire:</h4>
-                                <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,
-                                    tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis arcu. </p>
-                               
-
+                                <p>{{ trajet.commentaire }}</p>
+        
                                 <div class="price-box-bar">
                                     <div class="cart-and-bay-btn">
-                                        <a class="btn hvr-hover" data-fancybox-close="" href="#">Contacter le chauffeur</a>
+                                        <a class="btn hvr-hover" data-fancybox-close="" href="https://wa.me/{{ trajet.Auteur.whatsapp }}">Contacter le chauffeur</a>
                                     </div>
                                 </div>
-
-                                
                     </div>
                 </div>
             </div>
@@ -80,135 +80,33 @@
                 <div class="col-lg-12">
                     <div class="title-all text-center">
                         <h1>Trajets similaires</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                        <p>Quelques Trajets Similaires a celui-ci</p>
                     </div>
                     <div class="featured-products-box owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="products-single fix">
-                                <div class="box-img-hover">
-                                    <img src="images/carte.jpg" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                   
-                                        </ul>
-                                        <a class="cart" href="#">Details</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>Douala-Younde</h4>
-                                    <h5> Le 09-06-2024</h5>
-                                </div>
-                            </div>
-                        </div>
+                       
+                       {% for trajet in similaires %}
+
+                         <div class="item">
+                             <div class="products-single fix">
+                                 <div class="box-img-hover">
+                                     <img src="{% static 'images/carte.jpg' %}" class="img-fluid" alt="Image">
+                                     <div class="mask-icon">
+                                         <ul> 
+                                             <li><a href="{% url 'DetailTrajet' trajet.id %}" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                    
+                                         </ul>
+                                         <a class="cart" href="{% url 'DetailTrajet' trajet.id %}">Details</a>
+                                     </div>
+                                 </div>
+                                 <div class="why-text">
+                                     <h4>{{ trajet.Depart }} - {{ trajet.Arrive }}</h4>
+                                     <h5> {{ trajet.dateDepart|date:"d-m-Y" }}</h5>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                       {% endfor %}
+                        
                     </div>
                 </div>
             </div>
@@ -216,4 +114,41 @@
         </div>
     </div>
     <!-- End Cart -->
+
+    <script>
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService();
+            var directionsRenderer = new google.maps.DirectionsRenderer();
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: { lat: -34.397, lng: 150.644 }
+            });
+            directionsRenderer.setMap(map);
+    
+            var start = "{{ trajet.Depart }}";
+            var end = "{{ trajet.Arrive }}";
+    
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: 'DRIVING'
+            };
+    
+            directionsService.route(request, function (result, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(result);
+                    // Récupérer la distance et la durée du premier trajet
+                    var distance = result.routes[0].legs[0].distance.text;
+                    var duration = result.routes[0].legs[0].duration.text;
+                    // Afficher la distance et la durée dans les éléments HTML
+                    document.getElementById('distance').innerText = distance;
+                    document.getElementById('duration').innerText = duration;
+                }
+            });
+        }
+    
+        window.onload = initMap;
+    </script>
+    
+
     {% endblock %}

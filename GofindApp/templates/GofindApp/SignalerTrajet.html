@@ -30,12 +30,12 @@
                         <div class="title-left">
                             <h3>Ajoutez Votre trajet</h3>
                         </div>
-                        <form class="needs-validation" enctype="multipart/form-data" novalidate>
+                        <form class="needs-validation" method="post" target="{% url 'SignalerTrajet' %}" enctype="multipart/form-data" novalidate>
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="depart">Depart *</label>
-                                    <input type="text" class="form-control" id="depart" placeholder="Ex : Yaounde - AWAE" value="" required>
+                                    <input type="text" class="form-control" id="depart"  name="depart" placeholder="Ex : Yaounde - AWAE" value="" required>
                                     <div class="invalid-feedback"> Le depart doit respecter le format(Xxx - XXX).</div>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="date">Date de depart *</label>
-                                <input type="datetime-local" class="form-control" id="date" placeholder="" required>
+                                <input type="datetime-local" class="form-control" name="date" id="date" placeholder="" required>
                                 <div class="invalid-feedback">La date est indispensable. </div>
                             </div>
                             <hr class="mb-1">
@@ -86,13 +86,14 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="Commentaire">Commentaire *</label>
-                                    <textarea type="text" class="form-control" id="Commentaire" placeholder="" required rows="5" cols="70"></textarea>
+                                    <textarea type="text" class="form-control" id="Commentaire" name="Commentaire" placeholder="" required rows="5" cols="70"></textarea>
                                     <div class="invalid-feedback"> Commentaire requis </div>
                                 </div>
                                
                             </div>
-                           
-                            <hr class="mb-1"> </form>
+                           <button type="submit" hidden="true" id="btnSub"></button>
+                            <hr class="mb-1"> 
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -108,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 d-flex shopping-box"> <a href="#" class="ml-auto btn hvr-hover">Valider le Signalement</a> </div>
+                            <div class="col-12 d-flex shopping-box"> <a href="#" class="ml-auto btn hvr-hover" onclick="document.getElementById('btnSub').click()">Valider le Signalement</a> </div>
                         </div>
                         
                         

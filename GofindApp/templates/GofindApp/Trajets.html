@@ -20,33 +20,17 @@
     <!-- End All Title Box -->
 
     <!-- Start Shop Page  -->
+
     <div class="shop-box-inner">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                     <div class="product-categori">
                         <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Recherchez ici..." type="text">
-                                <button type="submit"> <i class="fa fa-search"></i> </button>
-                            </form>
+                            <input id="search-input" class="form-control" placeholder="Recherchez ici..." type="text">
+                            <button id="search-btn"> <i class="fa fa-search"></i> </button>
                         </div>
                         
-                        <div class="filter-price-left">
-                            <div class="title-left">
-                                <h3>Prix</h3>
-                            </div>
-                            <div class="price-box-slider">
-                                <div id="slider-range"></div>
-                                <p>
-                                    <input type="text" id="amount" readonly
-                                        style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filtrer</button>
-                                </p>
-                            </div>
-                        </div>
-                        
-                  
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
@@ -55,251 +39,151 @@
                             <div class="col-12 col-sm-8 text-center text-sm-left">
                                 <div class="toolbar-sorter-right">
                                     <span>Trier Par </span>
-                                    <select id="basic" class="selectpicker show-tick form-control"
-                                        data-placeholder="$ USD">
-                                        <option data-display="Select">Nothing</option>
-                                        <option value="1">Popularity</option>
-                                        <option value="2">High Price → High Price</option>
-                                        <option value="3">Low Price → High Price</option>
-                                        <option value="4">Best Selling</option>
+                                    <select id="sort-options" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                        <option data-display="Select">Rien</option>
+                                        <option value="price">Prix</option>
+                                        <option value="number">Nombre de places</option>
                                     </select>
                                 </div>
-                                <p>Resultats (50)</p>
+                                <p>Resultats (<span id="result-count">{{ trajets.count }}</span>)</p>
                             </div>
                             <div class="col-12 col-sm-4 text-center text-sm-right">
                                 <ul class="nav nav-tabs ml-auto">
-                                   
                                     <li>
-                                        <a class="nav-link active" href="#trajet-view" data-toggle="tab" title="trajets"> <i
-                                                class="fa fa-th"></i> </a>
+                                        <a class="nav-link active" href="#trajet-view" data-toggle="tab" title="trajets">
+                                            <i class="fa fa-list-ul"></i>
+                                        </a>
                                     </li>
-                                    
                                 </ul>
                             </div>
                         </div>
-
                         <div class="row product-categorie-box">
                             <div class="tab-content">
-                              
-
                                 <div role="tabpanel" class="tab-pane fade show active" id="trajet-view">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
+                                    {% for trajet in trajets %}
+                                    <div class="list-view-box trajet-item" data-price="{{ trajet.prix }}" data-title="{{ trajet.Depart }} - {{ trajet.Arrive }}" data-places="{{ trajet.places }}">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="new">{{ trajet.places }} places</p>
+                                                        </div>
+                                                        <img src="{{ trajet.Photo1.url }}" class="img-fluid" alt="Image">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="{% url 'DetailTrajet' trajet.id %}" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">3 places</p>
-                                                    </div>
-                                                   
-                                                    <img src="images/map.jpg" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Enregistrer"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">Details</a>
-                                                    </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>Douala-Younde</h4>
-                                                    <h5>Depart Le <span style="color:red">6-15-2024</span></h5>
-                                                    <h5> <span style="color:red">3500</span>  XAF</h5>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4>{{ trajet.Depart }} - {{ trajet.Arrive }}</h4>
+                                                    <h5> <span style="color: black;">Prix :</span> {{ trajet.prix }} FCFA</h5>
+                                                    <p>Départ le {{ trajet.dateDepart }}</p>
+                                                    <a class="btn hvr-hover" href="{% url 'DetailTrajet' trajet.id %}">Détails</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Slider Range
+            var slider = document.getElementById("slider-range");
+            var min = 0;
+            var max = 400000;
+            var values = [0, 400000];
+            var amount = document.getElementById("amount");
+
+            noUiSlider.create(slider, {
+                start: values,
+                connect: true,
+                range: {
+                    'min': min,
+                    'max': max
+                }
+            });
+
+            slider.noUiSlider.on('update', function (values, handle) {
+                amount.value = Math.round(values[0]) + " FCFA - " + Math.round(values[1]) + " FCFA";
+                slider.setAttribute('data-min', Math.round(values[0]));
+                slider.setAttribute('data-max', Math.round(values[1]));
+            });
+
+            document.getElementById("filter-price-btn").addEventListener("click", function () {
+                var minPrice = parseInt(slider.getAttribute("data-min"));
+                var maxPrice = parseInt(slider.getAttribute("data-max"));
+                var trajetItems = document.querySelectorAll(".trajet-item");
+                
+                trajetItems.forEach(function (item) {
+                    var price = parseInt(item.getAttribute("data-price"));
+                    if (price >= minPrice && price <= maxPrice) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            });
+
+            // Recherche en temps réel
+            document.getElementById("search-input").addEventListener("input", function () {
+                var searchText = this.value.toLowerCase();
+                var trajetItems = document.querySelectorAll(".trajet-item");
+                
+                trajetItems.forEach(function (item) {
+                    var title = item.getAttribute("data-title").toLowerCase();
+                    if (title.includes(searchText)) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            });
+
+            // Trier par prix ou nombre
+            document.getElementById("sort-options").addEventListener("change", function () {
+                var sortBy = this.value;
+                var items = Array.from(document.querySelectorAll(".trajet-item"));
+                items.sort(function (a, b) {
+                    if (sortBy === "price") {
+                        return parseInt(a.getAttribute("data-price")) - parseInt(b.getAttribute("data-price"));
+                    } else if (sortBy === "number") {
+                        return parseInt(a.getAttribute("data-places")) - parseInt(b.getAttribute("data-places"));
+                    }
+                    return 0;
+                });
+                var container = document.querySelector(".tab-content");
+                container.innerHTML = '';
+                items.forEach(function (item) {
+                    container.appendChild(item);
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- End Shop Page -->
     {% endblock %}

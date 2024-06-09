@@ -30,10 +30,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/284daa6a85.js" crossorigin="anonymous"></script>
-    <!--[if lt IE 9]>
+<!--    
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  -->
 
 </head>
 
@@ -130,7 +130,11 @@
                             {% endif %}
                                 
                             
-                            <li><a href="#">Nous Contacter</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'Signalements' %}">VOS SIGNALEMENTS</a></li>
+                            {% endif %}
+                                
+                            
                         </ul>
                     </div>
                 </div>
@@ -149,14 +153,14 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">A Propos de nous</a></li>
                         <li class="dropdown megamenu-fw">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Objets Volés <i class="fa-brands fa-shopify"></i></a>
@@ -219,13 +223,13 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SIGNALER </a>
                             <ul class="dropdown-menu">
                                 <li><a href="cart.html">OBJET VOLE</a></li>
-                                <li><a href="checkout.html">APPARTEMENT</a></li>
-                                <li><a href="my-account.html">TRAJET</a></li>
+                                <li><a href="{% url 'signaler_colloc' %}">COLOCATION</a></li>
+                                <li><a href="{% url 'SignalerTrajet' %}">TRAJET</a></li>
                            
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="service.html">COVOITURAGE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">COLOCATION</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'liste_trajets' %}">COVOITURAGE</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'liste_colocations' %}">COLOCATION</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -278,11 +282,16 @@
     <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Rechercher">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
+            <form action="{% url 'Recherche' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <span class="input-group-addon" onclick="document.getElementById('sub').click()"><i class="fa fa-search"></i></span>
+                    <button type="submit" id="sub" hidden="true"></button>
+                    <input type="text" class="form-control" name="sujet" placeholder="Rechercher...">
+                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                </div>
+            </form>
+            
         </div>
     </div>
     <!-- End Top Search -->

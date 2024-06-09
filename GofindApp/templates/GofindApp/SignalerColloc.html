@@ -29,25 +29,24 @@
                         <div class="title-left">
                             <h3>Ajoutez Votre Maison</h3>
                         </div>
-                       
-                        <form class="needs-validation" enctype="multipart/form-data"  novalidate>
+                        <form class="needs-validation" enctype="multipart/form-data" id="signalementForm" novalidate>
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="titre">Titre de lannonce *</label>
+                                <label for="titre">Titre de l'annonce *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="titre" name="titre" placeholder="Ex : A colouer Apart moderne " required> 
+                                    <input type="text" class="form-control" id="titre" name="titre" placeholder="Ex : A louer, appart moderne" required>
                                     <div class="invalid-feedback" style="width: 100%;"> Titre requis. </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="lieu">Lieu *</label>
-                                    <input type="text" class="form-control" id="lieu" name="lieu" placeholder="Ex : Yaounde - AWAE" value="" required>
-                                    <div class="invalid-feedback"> Le lieu doit respecter le format(Xxx - XXX).</div>
+                                    <input type="text" class="form-control" id="lieu" name="lieu" placeholder="Ex : Yaoundé - AWAE" required>
+                                    <div class="invalid-feedback"> Le lieu doit respecter le format (Xxx - XXX).</div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="prix">Loyer(mensuel) *</label>
-                                    <input type="number" class="form-control" id="prix" name="prix" placeholder="Ex : 50000" value="" required>
+                                    <input type="number" class="form-control" id="prix" name="prix" placeholder="Ex : 50000" required>
                                     <div class="invalid-feedback"> Le prix est indispensable (0 si gratuit).</div>
                                 </div>
                             </div>
@@ -55,7 +54,7 @@
                                 <label for="personnes">Nombre de personnes *</label>
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="personnes" name="personnes" placeholder="Ex : 3" required>
-                                    <div class="invalid-feedback" style="width: 100%;"> Le Nombre de personnes est requis. </div>
+                                    <div class="invalid-feedback" style="width: 100%;"> Le nombre de personnes est requis. </div>
                                 </div>
                             </div>
                             
@@ -68,35 +67,34 @@
                                 <div class="row-md-6 mb-3">
                                     <label for="country">Photo 1 *</label>
                                     <input type="file" class="form-control" id="photo1" name="photo1" required>
-                                    <div class="invalid-feedback"> cette photo est obligatoire !. </div>
+                                    <div class="invalid-feedback"> Cette photo est obligatoire !. </div>
                                 </div>
                                 <div class="row-md-6 mb-3">
                                     <label for="country">Photo 2 </label>
                                     <input type="file" class="form-control" id="photo2" name="photo2">
-                               
                                 </div>
                                 <div class="row-md-6 mb-3">
                                     <label for="country">Photo 3 </label>
                                     <input type="file" class="form-control" id="photo3" name="photo3">
-                               
                                 </div>
                             </div>
                            
                             <div class="row">
                                 <div class="row-md-6 mb-3">
                                     <label for="description">Description de la maison *</label>
-                                    <textarea type="text" class="form-control" id="description"  name="description" placeholder="" required rows="5" cols="70"></textarea>
+                                    <textarea type="text" class="form-control" id="description" name="description" placeholder="" required rows="5" cols="70"></textarea>
                                     <div class="invalid-feedback"> Commentaire requis </div>
                                 </div>
-                               
                             </div>
-                           
-                            <hr class="mb-1"> </form>
+                            
+                            <hr class="mb-1">
+                            <button type="button" class="btn hvr-hover" onclick="send_data()" style="color: #ffffff;margin-top:5px;height:60px; font-weight:900;justify-content:center;align-items:center;display:flex;background-color:rgb(248, 105, 105)">Valider le Signalement</button>
+                        </form>
+                        <div id="errorMessage"></div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="row">
-                        
                         <div class="col-md-12 col-lg-8">
                             <div class="odr-box">
                                 <div class="title-left">
@@ -106,14 +104,52 @@
                                     <img src="images/house.jpg" height="400" alt="">
                                 </div>
                             </div>
-
-                            <div class="col-12 d-flex shopping-box"> <a href="#" class="ml-auto btn hvr-hover">Valider le Signalement</a> </div>
                         </div>
-                        
-                        
                     </div>
                 </div>
             </div>
+        
+            <script>
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie !== "") {
+                        var cookies = document.cookie.split(";");
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = cookies[i].trim();
+                            if (cookie.substring(0, name.length + 1) === name + "=") {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+        
+                function send_data() {
+                    // Récupérer les données du formulaire
+                    var form_data = new FormData(document.getElementById('signalementForm'));
+        
+                    // Créer un objet XMLHttpRequest pour envoyer la requête Ajax
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "{% url 'signaler_colloc' %}", true);
+                    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+                    xhr.onload = function () {
+                        if (xhr.status == 200) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                window.location.href = response.redirect_url;
+                            } else {
+                                document.getElementById("errorMessage").innerHTML = response.message;
+                                alert(response.message);
+                            }
+                        } else {
+                            document.getElementById("errorMessage").innerHTML = "OUPS !! Une Erreur s'est produite.";
+                            alert("OUPS !! Une Erreur s'est produite.");
+                        }
+                    };
+                    xhr.send(form_data);
+                }
+            </script>
 
         </div>
     </div>

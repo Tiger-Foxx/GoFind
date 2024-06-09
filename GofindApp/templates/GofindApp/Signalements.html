@@ -3,6 +3,9 @@
 {% block content %}
 {% load static %}
 
+{% load signalement_tags %}
+
+
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -30,73 +33,33 @@
                                 <tr>
                                     <th>Images</th>
                                     <th>Titre</th>
-                                    <th>Type </th>
+                                    <th>Type</th>
                                     <th>Date</th>
                                     <th>Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-                                        </a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-                                        </a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-                                        </a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
-                                </tr>
+                                {% for signalement in signalements %}
+                                    <tr>
+                                        <td class="thumbnail-img">
+                                            <a href="#">
+                                                <img class="img-fluid" src="{{ signalement.Photo1.url }}" alt="" />
+                                            </a>
+                                        </td>
+                                        <td class="name-pr">
+                                            <a href="#">
+                                                {{ signalement.titre }}
+                                            </a>
+                                        </td>
+                                        <td class="price-pr">
+                                            <p>{{ signalement|signalement_type }}</p>
+                                        </td>
+                                        <td class="quantity-box">Le {{ signalement.date }}</td>
+                                        <td class="add-pr">
+                                            <a class="btn hvr-hover" href="{% url 'SupprimerSignal' signalement.id %}" style="margin-top: 0;">Retirer <i class="fas fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -105,5 +68,7 @@
         </div>
     </div>
     <!-- End Wishlist -->
+
+
 
     {% endblock %}
