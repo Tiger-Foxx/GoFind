@@ -75,17 +75,17 @@
                                                     <div class="type-lb">
                                                         <p class="sale">{{ objet.cathegorie }}</p>
                                                     </div>
-                                                    <img src="{{ objet.Photo1.url }}" class="img-fluid" alt="Image">
+                                                    <img src="{{ objet.Photo1.url }}"  class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="{% url 'detail_objet' objet.id %}" data-toggle="tooltip" data-placement="right" title="Voir"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
-                                                        <a class="cart" href="#">Details</a>
+                                                        <a class="cart" href="{% url 'detail_objet' objet.id %}">Details</a>
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
-                                                    <h4>{{ objet.nom }} | {{ objet.lieu }}</h4>
-                                                    <h5>{{ objet.description }}</h5>
+                                                    <h4 class="product-name">{{ objet.nom }} | {{ objet.lieu }}</h4>
+                                                    <h5> Le {{ objet.date|date:"d-m-Y" }}</h5>
                                                 </div>
                                             </div>
                                         </div>

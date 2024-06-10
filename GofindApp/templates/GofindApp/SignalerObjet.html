@@ -19,20 +19,20 @@
     </div>
     <!-- End All Title Box -->
 
-    <!-- Start Contact Us  -->
+
     <div class="contact-box-main">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-12">
                     <div class="contact-info-left">
                         <h2>SIGNALEMENT DE VOL</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                        <p>Le Signalement aura besoin de :  </p>
                         <ul>
                             <li>
-                                <p><i class="fas fa-map-marker-alt"></i>Votre Localisation <br>Preston Street Wichita,<br> KS 67213 </p>
+                                <p><i class="fas fa-map-marker-alt"></i>Votre Localisation <br>(l'endroit ou vous avez été volé)<br></p>
                             </li>
                             <li>
-                                <p><i class="fas fa-phone-square"></i>Votre Telephone <a href="tel:+1-888705770">(Whatsapp)</a></p>
+                                <p><i class="fas fa-phone-square"></i>Votre Téléphone <a href="tel:+1-888705770">(WhatsApp)</a></p>
                             </li>
                             <li>
                                 <p><i class="fas fa-envelope"></i>Votre Email : <a href="mailto:contactinfo@gmail.com">exemple@gmail.com</a></p>
@@ -43,19 +43,18 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">
                         <h2>REMPLISSEZ CE FORMULAIRE</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
-                        <form id="contactForm" enctype="multipart/form-data">
+                        <form id="contactForm2" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="nom" placeholder="Le Nom du Produit" required data-error="Le nom du Produit est indispensable">
+                                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Le Nom du Produit" required data-error="Le nom du Produit est indispensable">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" placeholder="Code du produit (Emei,Code Bar...etc)" id="CODE" class="form-control" name="code" required data-error="Ce code est indispensable">
+                                        <input type="text" placeholder="Code du produit (Emei, Code Bar...etc)" id="CODE" class="form-control" name="code" required data-error="Ce code est indispensable">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -68,35 +67,64 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="image1">Autre Image (facultatif)</label>
-                                        <input type="file" placeholder="Une Image" id="image2" class="form-control" name="image2" required data-error="Cette image est indispensable">
+                                        <label for="image2">Autre Image (facultatif)</label>
+                                        <input type="file" placeholder="Une Image" id="image2" class="form-control" name="image2">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="image1">Autre Image (facultatif)</label>
-                                        <input type="file" placeholder="Une Image" id="image3" class="form-control" name="image3" required data-error="Cette image est indispensable">
+                                        <label for="image3">Autre Image (facultatif)</label>
+                                        <input type="file" placeholder="Une Image" id="image3" class="form-control" name="image3">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="" style="width: 210px; right:0;">
-                                            <Label for="basicS"> Cathegorie du produit </Label>
-                                            <select id="basicS" class="selectpicker show-tick form-control" data-placeholder="CATHEGORIE" >
-                                            <option value="CATHEGORIE 1">CATHEGORIE 1 </option>
-                                            <option value="CATHEGORIE 1">CATHEGORIE 1 </option>
-                                            <option value="CATHEGORIE 1">CATHEGORIE 1 </option>
-                                            <option value="CATHEGORIE 1">CATHEGORIE AUTRE </option>
+                                        <label for="categorie">Catégorie du produit</label>
+                                        <select id="categorie" name="categorie" class="form-control" required>
+                                            <option value="">Autre</option>
+                                            <option value="accessoires">Accessoires</option>
+                                            <option value="appareils">Appareils</option>
+                                            <option value="appareils_ménagers">Appareils Ménagers</option>
+                                            <option value="audio">Audio</option>
+                                            <option value="cameras">Caméras</option>
+                                            <option value="canapes">Canapés</option>
+                                            <option value="chaises">Chaises</option>
+                                            <option value="decoration">Décoration</option>
+                                            <option value="enfants">Enfants</option>
+                                            <option value="femmes">Femmes</option>
+                                            <option value="hommes">Hommes</option>
+                                            <option value="jeux_vidéo">Jeux Vidéo</option>
+                                            <option value="livres">Livres</option>
+                                            <option value="lunettes">Lunettes</option>
+                                            <option value="maison">Maison</option>
+                                            <option value="meubles">Meubles</option>
+                                            <option value="montres">Montres</option>
+                                            <option value="musique">Musique</option>
+                                            <option value="ordinateurs">Ordinateurs</option>
+                                            <option value="sacs">Sacs</option>
+                                            <option value="sport">Sport</option>
+                                            <option value="tablettes">Tablettes</option>
+                                            <option value="tables">Tables</option>
+                                            <option value="telephones">Téléphones</option>
+                                            <option value="ustensiles_cuisine">Ustensiles de Cuisine</option>
+                                            <option value="vetements">Vêtements</option>
+                                            <!-- Ajoutez ici les nouvelles catégories si nécessaire -->
                                         </select>
-                                        </div>
                                         
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="description" placeholder="Une description du produit et des circonstance de perte" rows="4" data-error="La description est absolument necessaire" required></textarea>
+                                        <input type="text" class="form-control" id="lieu" name="lieu" placeholder="L'endroit ou vous avez ete vole : EX: YAOUNDE-AWAE" required data-error="Le lieu doit respecter le format VILLE-QUARTIER">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="description" name="description" placeholder="Une description du produit et des circonstances de perte" rows="4" data-error="La description est absolument nécessaire" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="submit-button text-center">
@@ -105,6 +133,8 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
+                               
+                                
                             </div>
                         </form>
                     </div>
@@ -112,5 +142,58 @@
             </div>
         </div>
     </div>
-    <!-- End Cart -->
+    <script>
+        
+
+        document.getElementById('contactForm2').addEventListener('submit', function(event) {
+            event.preventDefault();
+            send_data();
+        });
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === name + '=') {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function send_data() {
+            // Récupérer les données du formulaire
+            var form_data = new FormData(document.getElementById('contactForm2'));
+            
+            // Ajouter le champ 'categorie' à form_data
+            var categorie = document.getElementById('categorie').value;
+           
+            form_data.append('categorie', categorie);
+            
+            // Créer un objet XMLHttpRequest pour envoyer la requête Ajax
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{% url 'SignalerObjet' %}", true);
+            xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        window.location.href = response.redirect_url;
+                    } else {
+                        document.getElementById("msgSubmit").innerHTML = response.message;
+                    }
+                } else {
+                    document.getElementById("msgSubmit").innerHTML = "OUPS !! Une Erreur s'est produite.";
+                }
+            };
+            xhr.send(form_data);
+        }
+        
+    </script>
+
+
     {% endblock %}

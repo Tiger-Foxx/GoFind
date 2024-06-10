@@ -8,10 +8,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Vos Signalements</h2>
+                    <h2>Vos Notifications</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
-                        <li class="breadcrumb-item active">Signalements</li>
+                        <li class="breadcrumb-item active">Notifications</li>
                     </ul>
                 </div>
             </div>
@@ -20,83 +20,48 @@
     <!-- End All Title Box -->
 
     <!-- Start Wishlist  -->
+
     <div class="wishlist-box-main">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <h1 id="distance-text" style="text-align: center;font-weight:900">Le déclencheur se trouvait <strong style="color: red;">ICI</strong> quand il a effectué la recherche <br> (OBJET {{ lastObj.nom }})</h1>
+                    <div id="map-container" class="container col-lg-12" style="width: 95%;height:500px">
+                        <div id="map"  style="width: 100%; height: 100%;"></div>
+                    </div>
                     <div class="table-main table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Images</th>
-                                    <th>Titre</th>
-                                    <th>Type </th>
+                                    <th>Objet</th>
+                                    <th>WhatsApp Déclencheur</th>
+                                    <th>Message</th>
                                     <th>Date</th>
-                                    <th>Action</th>
-
+                                    <th>Position</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for notification in notifications %}
                                 <tr>
                                     <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        <a href="{% url 'detail_objet' notification.Objet.id %}">
+                                            <img class="img-fluid" src="{{ notification.Objet.Photo1.url}}" alt="" />
                                         </a>
                                     </td>
                                     <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                        <a href="https://wa.me/{{ notification.declancheur }}" style="font-size: 14px;">
+                                            {{ notification.declancheur }}
                                         </a>
                                     </td>
                                     <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
+                                        <p style="font-size: 14px;">{{ notification.message }}</p>
                                     </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-                                            <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-                                        </a>
-                                    </td>
+                                    <td class="quantity-box" style="font-size: 15px;">{{ notification.date }}</td>
                                     <td class="name-pr">
-                                        <a href="#">
-                                            Pull Versacci
-                                        </a>
+                                        <p style="font-size: 15px;">{{ notification.lieu }}</p>
                                     </td>
-                                    <td class="price-pr">
-                                        <p>Objet</p>
-                                    </td>
-                                    <td class="quantity-box">Le 22-02-2024</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Retirer <i class="fas fa-times"></i></a>
-                                    </td>
-
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -104,6 +69,69 @@
             </div>
         </div>
     </div>
-    <!-- End Wishlist -->
 
+   <!-- Insérer les données JSON en utilisant le filtre json_script -->
+   <p id="coo" hidden="true">{{lastNot.lieu}}</p>
+
+<script>
+    function initMap() {
+        const mapContainer = document.getElementById('map');
+        
+        // Assurez-vous que 'notifications' est une liste d'objets
+        const lastNotificationData = document.getElementById('coo').innerText;
+        //alert(lastNotificationData);
+        // Parsez la position du déclencheur
+        const declancheurLocation = { 
+            lat: parseFloat(lastNotificationData.split(',')[0]), 
+            lng: parseFloat(lastNotificationData.split(',')[1]) 
+        };
+
+        // Initialisez la carte avec la position du déclencheur
+        const map = new google.maps.Map(mapContainer, {
+            zoom: 10,
+            center: declancheurLocation,
+        });
+
+        const declancheurMarker = new google.maps.Marker({
+            position: declancheurLocation,
+            map: map,
+            title: 'Position du déclencheur',
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+
+                const userMarker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: 'Votre position',
+                });
+
+                const directionsService = new google.maps.DirectionsService();
+                const directionsRenderer = new google.maps.DirectionsRenderer();
+                directionsRenderer.setMap(map);
+
+                const request = {
+                    origin: userLocation,
+                    destination: declancheurLocation,
+                    travelMode: 'DRIVING',
+                };
+
+                directionsService.route(request, function(result, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                        const route = result.routes[0].legs[0];
+                        const distanceText = `Le déclencheur se trouvait <strong style="color: red;">ICI</strong> quand il a effectué la recherche ({{lastObj.nom}}). Distance: ${route.distance.text}, Temps: ${route.duration.text}`;
+                        document.getElementById('distance-text').innerHTML = distanceText;
+                    }
+                });
+            });
+        } else {
+            alert("La géolocalisation n'est pas prise en charge par ce navigateur.");
+        }
+    }
+
+    window.onload = initMap;
+</script>
     {% endblock %}

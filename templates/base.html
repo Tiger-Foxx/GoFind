@@ -2,6 +2,7 @@
 <html lang="en">
 <!-- Basic -->
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/284daa6a85.js" crossorigin="anonymous"></script>
-<!--    
+    <!--    
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   -->
@@ -46,7 +47,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
-                            
+
                             {% if user.is_authenticated %}
                             <ul class="offer-box">
                                 <li>
@@ -100,41 +101,41 @@
                                 <li>
                                     <i class="fab fa-opencart"></i> Veuilliez vous connecter
                                 </li>
-                            </ul> 
+                            </ul>
                             {% endif %}
-                                
-                           
+
+
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="custom-select-box">
                         <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-						<option>F FCFA</option>
-						<option>$ USD</option>
-						<option>€ EUR</option>
-					</select>
+                            <option>F FCFA</option>
+                            <option>$ USD</option>
+                            <option>€ EUR</option>
+                        </select>
                     </div>
                     <div class="right-phone-box">
                         <p>Contactez-nous : + <a href="#">237 658 86 66 39</a></p>
                     </div>
                     <div class="our-link">
                         <ul>
-                            
-                            
+
+
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'logout' %}">Se Deconnecter</a></li>
                             {% else %}
                             <li><a href="{% url 'inscription' %}">S'INSCRIRE</a></li>
                             <li><a href="{% url 'connexion' %}">SE CONNECTER</a></li>
                             {% endif %}
-                                
-                            
+
+
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'Signalements' %}">VOS SIGNALEMENTS</a></li>
                             {% endif %}
-                                
-                            
+
+
                         </ul>
                     </div>
                 </div>
@@ -150,10 +151,12 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"
+                            class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -163,30 +166,41 @@
                         <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">A Propos de nous</a></li>
                         <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Objets Volés <i class="fa-brands fa-shopify"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Objets Volés <i
+                                    class="fa-brands fa-shopify"></i></a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
+                                <!-- File: GofindApp/templates/GofindApp/menu.html -->
+
                                 <li>
                                     <div class="row">
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Appareils</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="shop.html">Appareil 1</a></li>
-                                                    <li><a href="shop.html">Appareil 2</a></li>
-                                                    <li><a href="shop.html">Appareil 3</a></li>
-                                                    <li><a href="shop.html">Autres</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=appareils">Tous les
+                                                            appareils</a></li>
+                                                    <li><a
+                                                            href="{% url 'liste_objets' %}?sujet=telephones">Téléphones</a>
+                                                    </li>
+                                                    <li><a
+                                                            href="{% url 'liste_objets' %}?sujet=ordinateurs">Ordinateurs</a>
+                                                    </li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=tablettes">Tablettes</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!-- end col-3 -->
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Vetements</h6>
+                                            <h6 class="title">Vêtements</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="shop.html">Vetement 1</a></li>
-                                                    <li><a href="shop.html"> Vetement 2</a></li>
-                                                    <li><a href="shop.html">Vetement 3</a></li>
-                                                    <li><a href="shop.html">Autres</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=vetements">Tous les
+                                                            vêtements</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=hommes">Hommes</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=femmes">Femmes</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=enfants">Enfants</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -195,85 +209,117 @@
                                             <h6 class="title">Meubles</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="shop.html">Meubles 1</a></li>
-                                                    <li><a href="shop.html">Meubles 2</a></li>
-                                                    <li><a href="shop.html">Meubles 3</a></li>
-                                                    <li><a href="shop.html">Meubles 4</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=meubles">Tous les
+                                                            meubles</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=chaises">Chaises</a>
+                                                    </li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=canapes">Canapés</a>
+                                                    </li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=tables">Tables</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-menu col-md-3">
-                                            <h6 class="title">Autres</h6>
+                                            <h6 class="title">Accessoires</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="shop.html">sacs</a></li>
-                                                    <li><a href="shop.html">lunettes</a></li>
-                                                    <li><a href="shop.html">jouets</a></li>
-                                                    <li><a href="shop.html">Autres</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=accessoires">Tous les
+                                                            accessoires</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=sacs">Sacs</a></li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=lunettes">Lunettes</a>
+                                                    </li>
+                                                    <li><a href="{% url 'liste_objets' %}?sujet=montres">Montres</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!-- end col-3 -->
+                                         <!-- New category: Électronique -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Électronique</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="{% url 'liste_objets' %}?sujet=electronique">Toute
+                                                        l'électronique</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=cameras">Caméras</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=audio">Audio</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=jeux_vidéo">Jeux Vidéo</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
+                                    <!-- end col-3 -->
+
+                                    <!-- New category: Loisirs -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Loisirs</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="{% url 'liste_objets' %}?sujet=loisirs">Tous les
+                                                        loisirs</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=sport">Sport</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=musique">Musique</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=livres">Livres</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+
+                                    <!-- New category: Maison -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Maison</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="{% url 'liste_objets' %}?sujet=maison">Tout pour la
+                                                        maison</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=decoration">Décoration</a>
+                                                </li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=ustensiles_cuisine">Ustensiles
+                                                        de Cuisine</a></li>
+                                                <li><a href="{% url 'liste_objets' %}?sujet=appareils_menagers">Appareils
+                                                        Ménagers</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                    </div>
+                                </li> 
+                            </ul>   
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SIGNALER </a>
                             <ul class="dropdown-menu">
-                                <li><a href="cart.html">OBJET VOLE</a></li>
+                                <li><a href="{% url 'SignalerObjet' %}">OBJET VOLE</a></li>
                                 <li><a href="{% url 'signaler_colloc' %}">COLOCATION</a></li>
                                 <li><a href="{% url 'SignalerTrajet' %}">TRAJET</a></li>
-                           
+        
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'liste_trajets' %}">COVOITURAGE</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'liste_colocations' %}">COLOCATION</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'liste_colocations' %}">COLOCATION</a>
+                        </li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
+                <!-- end row -->
+            </div>   
+                
+            
+        </div>
+            <!-- /.navbar-collapse -->
 
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
-					</a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+                <ul>
+                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <a href="{% url 'notifications' %}">llll</a>
+                    <li class="side-menu">
+                        <a href="{% url 'notifications' %}" id="notclick"><i class="fa fa-bell" onclick="document.getElementById('notclick').click()" title="notifications" style="font-size: 23px;"></i></a>
+                    </li>
+                </ul>
             </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="{% static 'images/img-pro-01.jpg' %}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="{% static 'images/img-pro-02.jpg' %}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="{% static 'images/img-pro-03.jpg' %}" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
+            <!-- End Atribute Navigation -->
             </div>
-            <!-- End Side Menu -->
+         
         </nav>
         <!-- End Navigation -->
     </header>
@@ -285,13 +331,36 @@
             <form action="{% url 'Recherche' %}" method="POST">
                 {% csrf_token %}
                 <div class="input-group">
-                    <span class="input-group-addon" onclick="document.getElementById('sub').click()"><i class="fa fa-search"></i></span>
+                    <span class="input-group-addon" onclick="document.getElementById('sub').click()"><i
+                            class="fa fa-search"></i></span>
                     <button type="submit" id="sub" hidden="true"></button>
                     <input type="text" class="form-control" name="sujet" placeholder="Rechercher...">
+                    <input type="hidden" id="coordonnees" name="coordonnees">
                     <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
                 </div>
             </form>
-            
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhVBkXbcRJ3WvdwOoI4r5Tmrh3xTKb278" loading="async" async defer></script>
+                <script>
+                    function initMap() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var lat = position.coords.latitude;
+                                var lng = position.coords.longitude;
+                                var latlng = new google.maps.LatLng(lat, lng);
+                                var coordonnees = `${lat},${lng}`;  // Stocker les coordonnées sous le format "lat,long"
+                                document.getElementById('coordonnees').value = coordonnees;
+                
+                                
+                            });
+                        }
+                    }
+                
+                    window.onload = initMap;
+                </script>
+                
+
+
         </div>
     </div>
     <!-- End Top Search -->
@@ -323,9 +392,9 @@
 
 
 
-{% block content %}
+    {% block content %}
 
-{% endblock %}
+    {% endblock %}
 
 
 
@@ -434,8 +503,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
                             <h4>A Propos de GoFind</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
                             <ul>
                                 <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
@@ -464,13 +535,16 @@
                             <h4>Contact Us</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston
+                                        Street Wichita,<br> KS 67213 </p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705
+                                            770</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a
+                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>
@@ -484,7 +558,8 @@
     <!-- Start copyright  -->
     <div class="footer-copyright">
         <p class="footer-company">All Rights Reserved. &copy; 2024 <a href="#">GoFind</a> Design By :
-            <a href="https://fox-s.netlify.app/">Fox</a></p>
+            <a href="https://fox-s.netlify.app/">Fox</a>
+        </p>
     </div>
     <!-- End copyright  -->
 
