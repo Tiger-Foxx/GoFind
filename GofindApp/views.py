@@ -449,3 +449,14 @@ def update_fcm_token(request):
             return JsonResponse({"success": False, "message": "Utilisateur non authentifié"})
     else:
         return JsonResponse({"success": False, "message": "Requête non valide"})
+
+
+# File: GofindApp/views.py
+
+from django.shortcuts import render
+
+def about(request):
+    return render(request, 'GofindApp/about.html')
+
+def privacy_policy(request):
+    return render(request, 'GofindApp/privacy_policy.html')

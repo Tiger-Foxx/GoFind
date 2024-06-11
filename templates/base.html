@@ -164,7 +164,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">A Propos de nous</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">A Propos de nous</a></li>
                         <li class="dropdown megamenu-fw">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Objets Volés <i
                                     class="fa-brands fa-shopify"></i></a>
@@ -503,10 +503,8 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
                             <h4>A Propos de GoFind</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
+                            <h2 class="noo-sh-title">Nous sommes <span>GoFind</span></h2>
+                    <p>GoFind est votre plateforme de référence pour la recherche de trajets de covoiturage, de colocations, d'appartements à louer et d'objets volés. Notre mission est de simplifier la recherche et le partage d'informations essentielles, en créant une communauté où l'entraide et l'efficacité priment.</p>
                             <ul>
                                 <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
@@ -522,11 +520,8 @@
                         <div class="footer-link">
                             <h4>Informations</h4>
                             <ul>
-                                <li><a href="#">A Propos de nous</a></li>
-                                <li><a href="#">Service Client</a></li>
-                                <li><a href="#">Notre SiteMap</a></li>
-                                <li><a href="#">Termes &amp; Conditions</a></li>
-                                <li><a href="#">Politique de Confidentialite</a></li>
+                                <li><a href="{% url 'about' %}">A Propos de nous</a></li>
+                                <li><a href="{% url 'privacy_policy' %}">Politique de Confidentialite</a></li>
                             </ul>
                         </div>
                     </div>
@@ -535,16 +530,14 @@
                             <h4>Contact Us</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston
-                                        Street Wichita,<br> KS 67213 </p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Donfack P. <br>Yaounde Awae,<br> rue 014 </p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705
-                                            770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+237658866639">+237658866639</a></p>
                                 </li>
                                 <li>
                                     <p><i class="fas fa-envelope"></i>Email: <a
-                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                            href="mailto:donfackarthur750@gmail.com@gmail.com">donfackarthur750@gmail.com@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>

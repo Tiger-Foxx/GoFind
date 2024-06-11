@@ -48,6 +48,7 @@ urlpatterns = [
     path('inscription/confirmation/', confirmation, name='confirmation'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
     path('update-fcm-token/', update_fcm_token, name='update_fcm_token'),
-
+    path('about/', about, name='about'),
+    path('privacy_policy/', privacy_policy, name='privacy_policy'),
    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
