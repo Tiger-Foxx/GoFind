@@ -44,7 +44,10 @@ urlpatterns = [
     path('detail_objet/<str:id>',detail_objet,name='detail_objet'),
     path('DetailTrajet/<str:id>',DetailTrajet,name='DetailTrajet'),
     path('DetailColloc/<str:id>',DetailColloc,name='DetailColloc'),
-
+    path('register/', inscription, name='register'),
+    path('inscription/confirmation/', confirmation, name='confirmation'),
+    path('activate/<uidb64>/<token>/', activate, name='activate'),
+    path('update-fcm-token/', update_fcm_token, name='update_fcm_token'),
 
    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

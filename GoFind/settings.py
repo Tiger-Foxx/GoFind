@@ -118,6 +118,11 @@ USE_TZ = True
 AUTH_USER_MODEL = 'Comptes.Utilisateur'
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR /'GofindApp/static'
+# GoFind/settings.py
+STATICFILES_DIRS = [
+    BASE_DIR / "public",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -125,3 +130,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL="/media/"
 MEDIA_ROOT= BASE_DIR / "media"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'donfackarthur750@gmail.com'
+EMAIL_HOST_PASSWORD = 'woweaydkwkeusjsi'
+# GoFind/settings.py
+
+FCM_SERVER_KEY = 'AAAA8SocC98:APA91bHRGheiHJn0AQMizfX1-EpYMhVMALzYTqe6cyh8NVrNK69Ky_IcfrvT30WrImcPXbM_Z4-PmcaNLIjymca7yZuSGhui4ixSWIYnjijB8KnvIfH7dxFM-yMlcKRvlQJIFkc0MSdh'
+

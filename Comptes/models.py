@@ -26,6 +26,8 @@ class Utilisateur(AbstractUser):
     nom=models.CharField(max_length=200,null=True,blank=True)
     ville=models.CharField(max_length=100,null=True,blank=True)
     whatsapp = models.CharField(max_length=13,null=True,blank=True)
+    email_verified = models.BooleanField(default=False)
+    fcm_token = models.CharField(max_length=255, blank=True, null=True)
     #champs non editables
     date=models.DateField(auto_now=True,editable=False)
     def __str__(self):

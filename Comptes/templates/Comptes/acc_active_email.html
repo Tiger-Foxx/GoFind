@@ -1,0 +1,5 @@
+{% autoescape off %}
+Hey bonjour {{ user.username }}, bienvenue sur GoFind !!
+Veuillez cliquer sur le lien ci-dessous pour confirmer votre inscription,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

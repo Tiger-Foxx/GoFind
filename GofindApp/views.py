@@ -7,7 +7,8 @@ import json
 from django.db.models import Q
 from django.http import JsonResponse
 from .models import SignalementColloc
-
+from pyfcm import FCMNotification
+from django.conf import settings
 
 # Create your views here.
 
@@ -250,7 +251,7 @@ def Recherche(request):
     for objet in objets:
         if objet.Code.lower() == sujet:
             message = f"Le Code de Votre Objet {objet.nom} a été saisi par un utilisateur, ce dernier la peut-etre appercu"
-            Notification.objects.create(
+            notification = Notification.objects.create(
                 declancheur=request.user.whatsapp,
                 Receveur=objet.Auteur,
                 lieu=coordonnees,
@@ -258,6 +259,13 @@ def Recherche(request):
                 Objet=objet,
                 date=datetime.datetime.now()
             )
+            # Envoyer une notification push via FCM
+            if objet.Auteur.fcm_token:
+                send_push_notification(
+                    registration_id=objet.Auteur.fcm_token,
+                    message_title="Notification de recherche d'objet",
+                    message_body=message
+                )
 
     return render(request, 'GofindApp/Resultats.html', {
         'colocs': colocs,
@@ -394,6 +402,8 @@ def detail_objet(request, id):
 from django.core.serializers import serialize
 
 def notifications(request):
+    if not request.user.is_authenticated:
+        return redirect('connexion')
     utilisateur = request.user
     lastObj=None
     lastNot=None
@@ -404,3 +414,38 @@ def notifications(request):
         lastNot=notifications[0]     
     
     return render(request, 'GofindApp/notifications.html', {'notifications': notifications,'lastObj':lastObj,'notifications_json':notifications_json,'lastNot':lastNot})
+
+
+# GoFind/Comptes/utils.py
+
+
+
+def send_push_notification(registration_id, message_title, message_body):
+    push_service = FCMNotification(api_key=settings.FCM_SERVER_KEY)
+    
+    result = push_service.notify_single_device(
+        registration_id=registration_id,
+        message_title=message_title,
+        message_body=message_body
+    )
+    
+    return result
+
+# GoFind/Comptes/views.py
+
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
+@csrf_exempt
+def update_fcm_token(request):
+    if request.method == 'POST':
+        token = request.POST.get('token')
+        user = request.user
+        if user.is_authenticated:
+            user.fcm_token = token
+            user.save()
+            return JsonResponse({"success": True, "message": "Token FCM mis à jour avec succès"})
+        else:
+            return JsonResponse({"success": False, "message": "Utilisateur non authentifié"})
+    else:
+        return JsonResponse({"success": False, "message": "Requête non valide"})
