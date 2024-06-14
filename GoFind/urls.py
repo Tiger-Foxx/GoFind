@@ -24,7 +24,7 @@ from GofindApp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name='index'),
-    #path('profile/<str:id>',profile,name='profile'),
+    path('profile/<str:id>',profile,name='profile'),
     path('logout/',deconnexion,name='logout'),
     path('liste_colocations',liste_colocations,name='liste_colocations'),
      path('liste_trajets',liste_trajets,name='liste_trajets'),

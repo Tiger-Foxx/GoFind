@@ -16,6 +16,9 @@ import random
 import string
 from Comptes.models import *
 from GofindApp.models import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
+
 User=get_user_model()
 
 
@@ -116,33 +119,37 @@ Vue qui se charge de consulter et modifier le profile d'un utilisateur
 
 """       
 
-def profile(request,nom):
-    if  not request.user.is_authenticated:
+# File: GofindApp/views.py
+
+
+@login_required
+def profile(request, id):
+    utilisateur = get_object_or_404(Utilisateur, id=id)
+    
+    if request.user.id != utilisateur.id:
         return redirect('connexion')
-    if  request.user.username !=nom:
-        return redirect('connexion')
+    
     if request.method == 'POST':
-        utilisateur = get_object_or_404(Utilisateur,id=request.user.id)
-         # traiter le formulaire
-        password =request.POST.get("password")
-        name =request.POST.get("nom")
-        email =request.POST.get("email")
-        telephone=request.POST.get("telephone")
-        ville=request.POST.get("ville")
-        utilisateur.nom=name
-        utilisateur.username=email
-        utilisateur.whatsapp=telephone
-        utilisateur.ville=ville
-        utilisateur.email=email
-        if password and password !="":
-            
-            hashed_password = make_password(password)
-            utilisateur.password=hashed_password
-        utilisateur.save()
+        name = request.POST.get("nom")
+        email = request.POST.get("email")
+        telephone = request.POST.get("telephone")
+        ville = request.POST.get("ville")
+        password = request.POST.get("password")
         
+        utilisateur.nom = name
+        utilisateur.username = telephone  # assuming username is telephone number
+        utilisateur.whatsapp = telephone
+        utilisateur.ville = ville
+        utilisateur.email = email
+
+        if password:
+            utilisateur.password = make_password(password)
+        
+        utilisateur.save()
         return redirect('index')
-    #notificationss=Notification.objects.all().order_by('-date')[:4]
-    return render(request,'SmartInvestApp/profile.html')
+    
+    return render(request, 'GofindApp/profile.html', {'utilisateur': utilisateur})
+
 
 
 

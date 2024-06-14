@@ -124,7 +124,8 @@
 
 
                             {% if user.is_authenticated %}
-                            <li><a href="{% url 'logout' %}">Se Deconnecter</a></li>
+                            <li><a href="{% url 'logout' %}">DECONNEXION</a></li>
+                            <li><a href="{% url 'profile' user.id %}">MON PROFILE</a></li>
                             {% else %}
                             <li><a href="{% url 'inscription' %}">S'INSCRIRE</a></li>
                             <li><a href="{% url 'connexion' %}">SE CONNECTER</a></li>
@@ -132,7 +133,7 @@
 
 
                             {% if user.is_authenticated %}
-                            <li><a href="{% url 'Signalements' %}">VOS SIGNALEMENTS</a></li>
+                            <li><a href="{% url 'Signalements' %}">MES SIGNALEMENTS</a></li>
                             {% endif %}
 
 
@@ -355,6 +356,7 @@
                             });
                         }
                     }
+                
                 
                     window.onload = initMap;
                 </script>
